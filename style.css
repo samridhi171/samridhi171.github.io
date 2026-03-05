@@ -1,0 +1,555 @@
+/* --- [1. Base & Global Styles] --- */
+html {
+  scroll-behavior: smooth; 
+}
+
+body {
+  background-color: #f7f6f2; 
+  background-image: radial-gradient(#d5d5d5 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  overflow-x: hidden; 
+  overflow-y: auto; 
+  position: relative; 
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>📌</text></svg>"), auto;
+}
+
+/* --- [2. SCRAPBOOK CORNERS (Fixed to screen)] --- */
+.scrap-element {
+  position: fixed; /* Keeps them on screen while you scroll! */
+  z-index: 1; /* Pushes them to the back */
+  pointer-events: none; /* Allows you to click links/buttons even if the invisible SVG box overlaps them */
+}
+
+/* --- [3. HERO SECTION] --- */
+.hero-section {
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: transparent; 
+}
+
+.hero-container {
+  position: relative;
+  width: 800px; /* Made this wider to give the letters more room! */
+  height: 450px;
+  z-index: 10;
+}
+
+/* Hero Action Buttons */
+.btn {
+  position: absolute;
+  top: -20px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #1a1a1a;
+  box-shadow: 4px 4px 0px #1a1a1a;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  z-index: 20;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-projects { left: 20px; background-color: #f898b9; color: #1a1a1a; transform: rotate(2deg); }
+.btn-resume { right: 20px; background-color: #1a1a1a; color: #f7f6f2; transform: rotate(-2deg); }
+.btn:hover { box-shadow: 2px 2px 0px #1a1a1a; transform: translate(2px, 2px) rotate(0deg); }
+
+/* "Creative" Bubble */
+
+
+/* Cutout Letters - Widened Spacing for Legibility! */
+.cutout { 
+  position: absolute; display: inline-block; font-size: 7.5rem; font-weight: 900; 
+  padding: 5px 15px; /* Reduced side padding so blocks don't overlap as much */
+  text-transform: lowercase; box-shadow: 3px 3px 0px rgba(0,0,0,0.1); 
+}
+.p { top: 80px; left: 180px; background-color: #1a1a1a; color: #f898b9; transform: rotate(-4deg); font-family: 'Times New Roman', serif; }
+.o1 { top: 70px; left: 270px; background-color: #f898b9; color: #1a1a1a; transform: rotate(5deg); }
+.r { top: 80px; left: 400px; background-color: #f898b9; color: #1a1a1a; transform: rotate(-2deg); }
+.t { top: 85px; left: 530px; background-color: #1a1a1a; color: #f898b9; transform: rotate(4deg); font-family: 'Times New Roman', serif; }
+
+.f { top: 200px; left: 120px; color: #1a1a1a; font-size: 9rem; font-family: cursive; transform: rotate(-5deg); text-shadow: -4px 4px #f898b9; background: none; box-shadow: none; z-index: 4; }
+.o2 { top: 210px; left: 240px; background-color: #e02f6b; color: #1a1a1a; transform: rotate(2deg); }
+.l { top: 250px; left: 360px; background-color: #1a1a1a; color: #f898b9; transform: rotate(-6deg); font-family: 'Times New Roman', serif; padding: 10px 20px; }
+.i { top: 215px; left: 460px; background-color: #e02f6b; color: #1a1a1a; transform: rotate(4deg); }
+.o3 { top: 210px; left: 540px; background-color: #f898b9; color: #f7f6f2; transform: rotate(-3deg); font-family: 'Times New Roman', serif; }
+
+.cutout {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.cutout:hover {
+  transform: scale(1.1) rotate(0deg) !important; /* Straightens them out on hover! */
+  filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.3));
+  z-index: 100;
+}
+
+/* Bottom Footer Texts */
+.bottom-details {
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+/* --- [4. ABOUT ME SECTION] --- */
+.about-section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10; 
+}
+
+.about-title { font-family: 'Times New Roman', serif; font-size: 8rem; color: #1a1a1a; margin: 0 0 60px 0; letter-spacing: -2px; }
+.about-title em { color: #f178a1; font-style: italic; }
+
+.about-grid { display: grid; grid-template-columns: 1fr 350px 1fr; gap: 50px; max-width: 1100px; align-items: center; }
+.about-text { font-family: 'Times New Roman', serif; font-size: 1.2rem; line-height: 1.6; color: #1a1a1a; }
+.text-left { text-align: right; }
+.text-right { text-align: left; }
+.about-text p { margin-bottom: 25px; }
+
+.about-image-container { width: 100%; display: flex; justify-content: center; }
+.about-image-container img { max-width: 100%; height: auto; filter: drop-shadow(8px 8px 0px #f178a1); }
+
+/* --- [3.5 TICKER TAPE MARQUEE] --- */
+.marquee-container {
+  width: 105vw; /* Slightly wider than the screen to hide the edges when rotated */
+  margin-left: -2vw;
+  background-color: #1a1a1a; /* Thick black tape */
+  color: #f7f6f2; /* Off-white text */
+  padding: 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 25;
+  transform: rotate(-2deg); /* Slants it like a physical piece of tape */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  border-top: 2px dashed #f898b9; /* Pink scrapbook stitching */
+  border-bottom: 2px dashed #f898b9;
+  
+  /* Positioning to bridge the Hero and About sections */
+  margin-top: 40px; 
+  margin-bottom: 60px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 20s linear infinite; /* 20s controls the speed */
+}
+
+.marquee-text {
+  font-family: 'Courier New', Courier, monospace; /* Typewriter aesthetic */
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-right: 15px; /* Space before the loop restarts */
+}
+
+/* The Infinite Loop Animation Engine */
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Moves exactly half the track to create a seamless loop */
+}
+
+/* Custom Scrapbook Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f6f2; 
+  border-left: 2px dashed #1a1a1a; /* Adds a stitched line down the side of the screen */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #f898b9; 
+  border: 2px solid #1a1a1a; 
+  border-radius: 10px;
+}
+
+/* --- [5. PROJECTS SECTION] --- */
+.projects-section {
+  min-height: 100vh;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.projects-title-container { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 60px; }
+.projects-title-my { font-family: 'Times New Roman', serif; font-size: 4rem; color: #1a1a1a; font-style: italic; margin-bottom: -35px; z-index: 2; }
+.projects-title-main { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 7.5rem; font-weight: 900; color: #1a1a1a; letter-spacing: -4px; text-transform: lowercase; }
+
+/* --- CD BADGE ANIMATIONS --- */
+.badges-container { 
+  display: flex; 
+  gap: 30px; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  margin-bottom: 120px; 
+}
+
+.badge-item { 
+  position: relative; 
+  width: 200px; 
+  height: 200px; 
+  transition: transform 0.3s ease; 
+  cursor: pointer; 
+  text-decoration: none; 
+  display: block; 
+}
+
+/* The whole item lifts slightly when hovered */
+.badge-item:hover { 
+  transform: translateY(-10px); 
+}
+
+.cd-svg { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 1; 
+  transform-origin: center; /* Ensures it spins perfectly around the middle hole */
+  transition: transform 0.3s ease;
+}
+
+/* The infinite spin triggers when hovering the parent badge */
+.badge-item:hover .cd-svg {
+  animation: spinCD 3s linear infinite; /* '2s' is the speed. Lower it for faster spinning! */
+}
+
+/* The Engine behind the endless rotation */
+@keyframes spinCD {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.project-block { width: 100%; max-width: 1100px; margin-bottom: 150px; scroll-margin-top: 80px; }
+.project-gallery { background-color: #1a1a1a; padding: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; box-shadow: 6px 6px 0px rgba(0,0,0,0.1); }
+.project-gallery img { width: 100%; height: 440px; object-fit: cover; background-color: #f7f6f2; transition: transform 0.3s ease; }
+.project-gallery img:hover { transform: scale(1.03); }
+
+.project-details { display: grid; grid-template-columns: 1fr auto 1fr; gap: 50px; align-items: center; }
+.project-title { font-family: 'Times New Roman', serif; font-size: 5rem; font-style: italic; font-weight: bold; color: #f178a1; white-space: nowrap; text-align: center; letter-spacing: -1px; }
+.project-desc { font-family: 'Times New Roman', serif; font-size: 1.1rem; line-height: 1.6; color: #1a1a1a; }
+.desc-left { text-align: right; }
+.desc-right { text-align: left; }
+.github-link { display: inline-block; margin-top: 15px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 1rem; color: #1a1a1a; text-decoration: none; text-transform: uppercase; border-bottom: 3px solid #f178a1; padding-bottom: 2px; transition: all 0.2s ease; }
+.github-link:hover { background-color: #f178a1; color: #f7f6f2; }
+
+
+/* --- [6. FOOTER SECTION (FOLDER LAYOUT)] --- */
+.footer-section {
+  padding: 120px 20px 150px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.folder-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 30px; 
+  filter: drop-shadow(15px 15px 0px #1a1a1a); 
+}
+
+.folder-shadow {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: #f178a1;
+  border-radius: 0 10px 10px 10px;
+  z-index: 1;
+}
+
+.folder-shadow::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 250px;
+  height: 30px;
+  background-color: #f178a1;
+  border-radius: 15px 15px 0 0;
+}
+
+.folder-paper {
+  position: relative;
+  background-color: #ffdce9;
+  border-radius: 0 10px 10px 10px;
+  padding: 80px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.folder-paper::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 250px;
+  height: 30px;
+  background-color: #ffdce9;
+  border-radius: 15px 15px 0 0;
+}
+
+.paperclip {
+  position: absolute;
+  top: -50px;
+  right: 60px;
+  z-index: 5;
+  transform: rotate(12deg);
+}
+
+.footer-left {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-together-text {
+  font-family: 'Times New Roman', serif;
+  font-size: 4.5rem;
+  font-style: italic;
+  font-weight: bold;
+  color: #1a1a1a;
+  line-height: 1.1;
+  transform: rotate(-6deg);
+  text-align: center;
+  margin: 0;
+}
+
+.drawn-arrow { margin-top: 5px; transform: rotate(5deg); margin-left: 120px; }
+.footer-right { flex: 1; position: relative; padding-left: 60px; }
+
+
+.footer-name {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #1a1a1a; /* Changed to solid black to anchor the pink folder */
+  text-shadow: none; /* Removed the 3D shadow for a much cleaner, modern look */
+  line-height: 0.9;
+  letter-spacing: -2px;
+  margin-bottom: 25px;
+}
+
+.footer-links { 
+  display: flex; 
+  flex-direction: row; /* This puts them side-by-side */
+  gap: 60px; /* Adjust this number to add more/less space between them */
+  flex-wrap: wrap; /* Ensures they drop to the next line on tiny screens if needed */
+}
+.f-link { 
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  color: #1a1a1a; 
+  text-decoration: none; 
+  text-transform: uppercase; /* Optional: makes the links look like crisp code */
+  transition: all 0.2s ease; 
+}
+.f-link:hover { color: #f178a1; text-decoration: underline; transform: translateX(5px); }
+
+/* --- [4.5 SKILLS SECTION (STICKER BOARD)] --- */
+.skills-section {
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.skills-title { 
+  font-family: 'Times New Roman', serif; 
+  font-size: 6rem; 
+  color: #1a1a1a; 
+  margin: 0 0 40px 0; 
+  letter-spacing: -2px; 
+}
+.skills-title em { 
+  color: #f178a1; 
+  font-style: italic; 
+}
+
+/* The Board Container */
+.sticker-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  max-width: 900px;
+  padding: 20px;
+}
+
+/* Base Sticker Styling (The Die-Cut Look) */
+.sticker {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  padding: 15px 30px;
+  background-color: #f7f6f2; /* Off-white sticker paper */
+  border: 3px solid #1a1a1a;
+  border-radius: 12px; /* Soft edges like a real sticker */
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.8); /* Hard black shadow */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, z-index 0.2s;
+  position: relative;
+  z-index: 5;
+}
+
+/* The Hover "Jiggle" */
+.sticker:hover {
+  transform: scale(1.1) rotate(0deg) !important; /* Straightens it out! */
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.8); /* Makes it pop off the page */
+  z-index: 20;
+}
+
+/* Individual Sticker Rotations & Colors */
+.s-python { transform: rotate(-6deg); background-color: #f898b9; }
+.s-langchain { transform: rotate(4deg); }
+.s-figma { transform: rotate(-3deg); background-color: #1a1a1a; color: #f7f6f2; }
+.s-sqlite { transform: rotate(5deg); background-color: #ffdce9; }
+
+.s-gemini { transform: rotate(-2deg); background-color: #f7f6f2; }
+.s-uiux { transform: rotate(6deg); background-color: #f898b9; }
+.s-html { transform: rotate(-5deg); background-color: #1a1a1a; color: #f7f6f2; }
+
+.s-data { transform: rotate(3deg); }
+.s-research { transform: rotate(-4deg); background-color: #ffdce9; }
+.s-github { transform: rotate(5deg); background-color: #f898b9; }
+
+
+
+
+
+/* ========================================== */
+/* 📱 RESPONSIVE MEDIA QUERIES                */
+/* ========================================== */
+
+/* ========================================== */
+/* RESPONSIVENESS (TABLETS & PHONES)          */
+/* ========================================== */
+
+/* --- TABLET VIEW (Under 1024px) --- */
+@media (max-width: 1024px) {
+  /* Scale the Hero down slightly for iPads */
+  .hero-container { transform: scale(0.8); transform-origin: center top; }
+  
+  /* Stack About Section */
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-text.text-left, .about-text.text-right { text-align: center; }
+  .about-image-container img { max-width: 300px; margin: 0 auto; }
+  
+  /* Stack Project Section */
+  .project-details { flex-direction: column; text-align: center; }
+  .desc-left, .desc-right { text-align: center; }
+  .project-gallery { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  .project-title { order: -1; white-space: normal; margin: 20px 0; }
+}
+
+/* --- MOBILE VIEW (Under 768px) --- */
+@media (max-width: 768px) {
+  /* Hide corner scraps to prevent horizontal scrolling */
+  .scrap-element { display: none; }
+  
+  /* Proper Hero Layout (Stacks items instead of just scaling them down) */
+  .hero-container { 
+    transform: none; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding-top: 60px;
+  }
+  .btn { 
+    position: relative !important; 
+    top: auto !important; left: auto !important; right: auto !important; 
+    display: inline-block; 
+    margin: 10px 5px; 
+    padding: 8px 16px; 
+    font-size: 0.9rem; 
+  }
+  .cutout { 
+    position: relative !important; 
+    top: auto !important; left: auto !important; 
+    display: inline-block; 
+    margin: 2px; 
+    font-size: 2.5rem; 
+    padding: 5px;
+  }
+  .creative-badge, .drawn-name-oval { 
+    position: relative !important; 
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; 
+    margin: 15px auto; 
+    font-size: 1.5rem;
+  }
+  .bottom-details { 
+    position: relative !important; 
+    bottom: auto !important; left: auto !important; right: auto !important; 
+    display: flex; flex-direction: column; gap: 10px; margin-top: 15px; 
+  }
+  .bottom-details span { position: static; }
+
+  /* Typography Shrinking */
+  .about-title { font-size: 3.5rem; text-align: center; }
+  .skills-title { font-size: 3.5rem; text-align: center; }
+  .projects-title-main { font-size: 3.8rem; letter-spacing: -2px; }
+  .projects-title-my { font-size: 2.5rem; margin-bottom: -15px; }
+  .marquee-text { font-size: 1.2rem; }
+  
+  /* Adjust Stickers */
+  .sticker { font-size: 1rem; padding: 8px 16px; }
+
+  /* Stack CD Badges */
+  .badges-container { flex-direction: column; align-items: center; gap: 20px; }
+  .badge-item { transform: scale(0.9); margin: 0; }
+  
+  /* Stack Footer */
+  .folder-paper { flex-direction: column; padding: 50px 20px; text-align: center; }
+  .folder-shadow::before, .folder-paper::before { width: 100px; }
+  .footer-left, .footer-right { align-items: center; text-align: center; padding: 0; }
+  .footer-right { margin-top: 30px; }
+  .work-together-text { font-size: 3rem; }
+  .footer-name { font-size: 2.5rem; margin-bottom: 15px; }
+  .footer-badge { position: relative; top: auto; right: auto; margin-bottom: 15px; transform: rotate(0deg); }
+  .drawn-arrow { display: none; }
+}
+
+/* --- SMALL MOBILE (Under 480px) --- */
+@media (max-width: 480px) {
+  /* Make image grids a single column on tiny screens */
+  .project-gallery { grid-template-columns: 1fr; }
+  .project-gallery img { height: 250px; }
+  
+  /* Extra text shrinking */
+  .cutout { font-size: 2rem; }
+  .work-together-text { font-size: 2.5rem; }
+}
